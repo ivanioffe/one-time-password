@@ -47,10 +47,13 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    testImplementation(libs.junit)
+    testImplementation(platform(libs.test.junit5.bom))
+    testImplementation(libs.test.junit5.api)
+    testRuntimeOnly(libs.test.junit5.engine)
+    testRuntimeOnly(libs.test.junit.platform.launcher)
     testImplementation(libs.truth)
 
-    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
 
