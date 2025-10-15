@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
@@ -66,7 +67,8 @@ fun OtpField(
                 ),
             singleLine = true,
             cursorBrush = SolidColor(Color.Transparent),
-            modifier = modifier,
+            modifier = modifier
+                .testTag("OtpField"),
             decorationBox = { innerTextField ->
                 innerTextField()
 
