@@ -30,7 +30,7 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation("com.github.ivanioffe:one-time-password:compose:latest-version")
+    implementation("com.github.ivanioffe.one-time-password:compose:latest-version")
 }
 ```
 
