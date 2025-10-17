@@ -1,6 +1,7 @@
 plugins {
     id("java-library")
     alias(libs.plugins.jetbrains.kotlin.jvm)
+    alias(libs.plugins.mavenPublish)
 }
 java {
     sourceCompatibility = JavaVersion.VERSION_17
