@@ -1,12 +1,10 @@
-package com.ioffeivan.otp.compose
+package com.ioffeivan.otp.compose.utils
 
 import com.google.common.truth.Truth.assertThat
-import com.ioffeivan.otp.compose.utils.StandardOtpInputType
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 class StandardOtpInputTypeTest {
-
     @Nested
     inner class DigitsOtpInputTypeTest {
         private val type = StandardOtpInputType.DIGITS
