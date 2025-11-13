@@ -10,6 +10,8 @@ import androidx.compose.foundation.text.selection.LocalTextSelectionColors
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,6 +21,7 @@ import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import com.ioffeivan.otp.compose.utils.OtpInputType
+import com.ioffeivan.otp.compose.utils.OtpVisualTransformation
 import com.ioffeivan.otp.compose.utils.StandardOtpInputType
 import com.ioffeivan.otp.core.model.OtpCell
 import com.ioffeivan.otp.core.model.OtpLength
@@ -32,6 +35,8 @@ import com.ioffeivan.otp.core.model.OtpLength
  * @param modifier Optional [Modifier] to apply to the text field.
  * @param enabled Whether the OTP field is enabled for user input. Defaults to true.
  * @param inputType The type of input allowed, defined by [OtpInputType]. Defaults to [StandardOtpInputType.DIGITS].
+ * @param visualTransformation An optional custom transformation to visually modify the OTP value
+ * displayed in the cells (e.g., masking or delayed revealing). If null, the raw OTP is shown.
  * @param content A composable lambda that defines the appearance of each OTP cell, receiving an [OtpCell] parameter.
  */
 @Composable
@@ -42,8 +47,12 @@ fun OtpField(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     inputType: OtpInputType = StandardOtpInputType.DIGITS,
+    visualTransformation: OtpVisualTransformation? = null,
     content: @Composable RowScope.(otpCell: OtpCell) -> Unit,
 ) {
+    val transformedOtp by visualTransformation?.transform(otp)
+        ?: rememberUpdatedState(otp)
+
     CompositionLocalProvider(LocalTextSelectionColors provides textSelectionColors) {
         BasicTextField(
             value = TextFieldValue(otp, TextRange(otp.length)),
@@ -67,8 +76,9 @@ fun OtpField(
                 ),
             singleLine = true,
             cursorBrush = SolidColor(Color.Transparent),
-            modifier = modifier
-                .testTag("OtpField"),
+            modifier =
+                modifier
+                    .testTag("OtpField"),
             decorationBox = { innerTextField ->
                 innerTextField()
 
@@ -77,7 +87,7 @@ fun OtpField(
                     horizontalArrangement = Arrangement.Center,
                 ) {
                     repeat(length.value) { index ->
-                        val otpCellValue = otp.getOrNull(index)?.toString() ?: ""
+                        val otpCellValue = transformedOtp.getOrNull(index)?.toString() ?: ""
                         val isFocused = index == otp.length
                         val position = index + 1
 
