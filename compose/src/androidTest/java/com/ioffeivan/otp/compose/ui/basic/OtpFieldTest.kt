@@ -1,4 +1,4 @@
-package com.ioffeivan.otp.compose
+package com.ioffeivan.otp.compose.ui.basic
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.mutableStateOf
@@ -12,7 +12,6 @@ import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.ioffeivan.otp.compose.ui.basic.OtpField
 import com.ioffeivan.otp.compose.utils.StandardOtpInputType
 import com.ioffeivan.otp.core.model.OtpLength
 import org.junit.Rule
@@ -37,7 +36,7 @@ class OtpFieldTest {
                 Text(
                     text = otpCell.value,
                     modifier =
-                        Modifier
+                        Modifier.Companion
                             .testTag("OtpCell"),
                 )
             }
@@ -59,7 +58,7 @@ class OtpFieldTest {
                 Text(
                     text = otpCell.value,
                     modifier =
-                        Modifier
+                        Modifier.Companion
                             .testTag("OtpCell_${otpCell.position}"),
                 )
             }
@@ -89,7 +88,7 @@ class OtpFieldTest {
                 ) { otpCell ->
                     Text(
                         text = otpCell.value,
-                        modifier = Modifier.testTag("OtpCell_${otpCell.position}"),
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
                     )
                 }
             }
@@ -122,7 +121,7 @@ class OtpFieldTest {
                 ) { otpCell ->
                     Text(
                         text = otpCell.value,
-                        modifier = Modifier.testTag("OtpCell_${otpCell.position}")
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}")
                     )
                 }
             }
@@ -155,7 +154,7 @@ class OtpFieldTest {
                 ) { otpCell ->
                     Text(
                         text = otpCell.value,
-                        modifier = Modifier.testTag("OtpCell_${otpCell.position}"),
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
                     )
                 }
             }
@@ -188,7 +187,7 @@ class OtpFieldTest {
                 ) { otpCell ->
                     Text(
                         text = otpCell.value,
-                        modifier = Modifier.testTag("OtpCell_${otpCell.position}")
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}")
                     )
                 }
             }
@@ -219,7 +218,7 @@ class OtpFieldTest {
             ) { otpCell ->
                 Text(
                     text = otpCell.value,
-                    modifier = Modifier.testTag("OtpCell_${otpCell.position}")
+                    modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}")
                 )
             }
         }

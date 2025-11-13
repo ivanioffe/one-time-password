@@ -1,7 +1,6 @@
-package com.ioffeivan.otp.compose
+package com.ioffeivan.otp.compose.utils
 
-import com.google.common.truth.Truth.assertThat
-import com.ioffeivan.otp.compose.utils.StandardOtpInputType
+import com.google.common.truth.Truth
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
@@ -16,7 +15,7 @@ class StandardOtpInputTypeTest {
             val otp = "12345"
             val result = type.isValid(otp)
 
-            assertThat(result).isTrue()
+            Truth.assertThat(result).isTrue()
         }
 
         @Test
@@ -24,7 +23,7 @@ class StandardOtpInputTypeTest {
             val otp = "a2c45"
             val result = type.isValid(otp)
 
-            assertThat(result).isFalse()
+            Truth.assertThat(result).isFalse()
         }
 
         // Must be true to allow the user to clear the input field.
@@ -33,7 +32,7 @@ class StandardOtpInputTypeTest {
             val otp = ""
             val result = type.isValid(otp)
 
-            assertThat(result).isTrue()
+            Truth.assertThat(result).isTrue()
         }
     }
 
@@ -46,7 +45,7 @@ class StandardOtpInputTypeTest {
             val otp = "abcde"
             val result = type.isValid(otp)
 
-            assertThat(result).isTrue()
+            Truth.assertThat(result).isTrue()
         }
 
         @Test
@@ -54,7 +53,7 @@ class StandardOtpInputTypeTest {
             val otp = "ab3@d"
             val result = type.isValid(otp)
 
-            assertThat(result).isFalse()
+            Truth.assertThat(result).isFalse()
         }
 
         // Must be true to allow the user to clear the input field.
@@ -63,7 +62,7 @@ class StandardOtpInputTypeTest {
             val otp = ""
             val result = type.isValid(otp)
 
-            assertThat(result).isTrue()
+            Truth.assertThat(result).isTrue()
         }
     }
 }
