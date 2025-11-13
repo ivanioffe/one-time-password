@@ -1,4 +1,4 @@
-package com.ioffeivan.otp.compose
+package com.ioffeivan.otp.compose.ui.basic
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.mutableStateOf
@@ -12,7 +12,6 @@ import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.ioffeivan.otp.compose.ui.basic.OtpField
 import com.ioffeivan.otp.compose.utils.StandardOtpInputType
 import com.ioffeivan.otp.core.model.OtpLength
 import org.junit.Rule
@@ -25,54 +24,57 @@ class OtpFieldTest {
     val rule = createComposeRule()
 
     @Test
-    fun displaysCorrectNumberOfCells(): Unit = with(rule) {
-        val length = OtpLength(5)
+    fun displaysCorrectNumberOfCells() {
+        with(rule) {
+            val length = OtpLength(5)
 
-        setContent {
-            OtpField(
-                otp = "",
-                length = length,
-                onOtpChange = {},
-            ) { otpCell ->
-                Text(
-                    text = otpCell.value,
-                    modifier =
-                        Modifier
-                            .testTag("OtpCell"),
-                )
+            setContent {
+                OtpField(
+                    otp = "",
+                    length = length,
+                    onOtpChange = {},
+                ) { otpCell ->
+                    Text(
+                        text = otpCell.value,
+                        modifier =
+                            Modifier.Companion
+                                .testTag("OtpCell"),
+                    )
+                }
             }
-        }
 
-        onAllNodesWithTag("OtpCell", useUnmergedTree = true)
-            .assertCountEquals(length.value)
+            onAllNodesWithTag("OtpCell", useUnmergedTree = true)
+                .assertCountEquals(length.value)
+        }
     }
 
-
     @Test
-    fun displaysCorrectValueInCells(): Unit = with(rule) {
-        setContent {
-            OtpField(
-                otp = "123",
-                onOtpChange = {},
-                length = OtpLength(3),
-            ) { otpCell ->
-                Text(
-                    text = otpCell.value,
-                    modifier =
-                        Modifier
-                            .testTag("OtpCell_${otpCell.position}"),
-                )
+    fun displaysCorrectValueInCells() {
+        with(rule) {
+            setContent {
+                OtpField(
+                    otp = "123",
+                    onOtpChange = {},
+                    length = OtpLength(3),
+                ) { otpCell ->
+                    Text(
+                        text = otpCell.value,
+                        modifier =
+                            Modifier.Companion
+                                .testTag("OtpCell_${otpCell.position}"),
+                    )
+                }
             }
+
+            onNodeWithTag("OtpCell_1", useUnmergedTree = true)
+                .assertTextEquals("1")
+
+            onNodeWithTag("OtpCell_2", useUnmergedTree = true)
+                .assertTextEquals("2")
+
+            onNodeWithTag("OtpCell_3", useUnmergedTree = true)
+                .assertTextEquals("3")
         }
-
-        onNodeWithTag("OtpCell_1", useUnmergedTree = true)
-            .assertTextEquals("1")
-
-        onNodeWithTag("OtpCell_2", useUnmergedTree = true)
-            .assertTextEquals("2")
-
-        onNodeWithTag("OtpCell_3", useUnmergedTree = true)
-            .assertTextEquals("3")
     }
 
     @Test
@@ -89,7 +91,7 @@ class OtpFieldTest {
                 ) { otpCell ->
                     Text(
                         text = otpCell.value,
-                        modifier = Modifier.testTag("OtpCell_${otpCell.position}"),
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
                     )
                 }
             }
@@ -122,7 +124,7 @@ class OtpFieldTest {
                 ) { otpCell ->
                     Text(
                         text = otpCell.value,
-                        modifier = Modifier.testTag("OtpCell_${otpCell.position}")
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
                     )
                 }
             }
@@ -155,7 +157,7 @@ class OtpFieldTest {
                 ) { otpCell ->
                     Text(
                         text = otpCell.value,
-                        modifier = Modifier.testTag("OtpCell_${otpCell.position}"),
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
                     )
                 }
             }
@@ -188,7 +190,7 @@ class OtpFieldTest {
                 ) { otpCell ->
                     Text(
                         text = otpCell.value,
-                        modifier = Modifier.testTag("OtpCell_${otpCell.position}")
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
                     )
                 }
             }
@@ -208,50 +210,52 @@ class OtpFieldTest {
     }
 
     @Test
-    fun truncatesInputWhenLengthIsExceeded(): Unit = with(rule) {
-        val otpState = mutableStateOf("")
+    fun truncatesInputWhenLengthIsExceeded(): Unit =
+        with(rule) {
+            val otpState = mutableStateOf("")
 
-        setContent {
-            OtpField(
-                otp = otpState.value,
-                onOtpChange = { otpState.value = it },
-                length = OtpLength(4),
-            ) { otpCell ->
-                Text(
-                    text = otpCell.value,
-                    modifier = Modifier.testTag("OtpCell_${otpCell.position}")
-                )
+            setContent {
+                OtpField(
+                    otp = otpState.value,
+                    onOtpChange = { otpState.value = it },
+                    length = OtpLength(4),
+                ) { otpCell ->
+                    Text(
+                        text = otpCell.value,
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
+                    )
+                }
             }
+
+            onNodeWithTag("OtpField")
+                .performTextInput("12345")
+
+            onNodeWithTag("OtpCell_1", useUnmergedTree = true)
+                .assertTextEquals("1")
+
+            onNodeWithTag("OtpCell_2", useUnmergedTree = true)
+                .assertTextEquals("2")
+
+            onNodeWithTag("OtpCell_3", useUnmergedTree = true)
+                .assertTextEquals("3")
+
+            onNodeWithTag("OtpCell_4", useUnmergedTree = true)
+                .assertTextEquals("4")
         }
-
-        onNodeWithTag("OtpField")
-            .performTextInput("12345")
-
-        onNodeWithTag("OtpCell_1", useUnmergedTree = true)
-            .assertTextEquals("1")
-
-        onNodeWithTag("OtpCell_2", useUnmergedTree = true)
-            .assertTextEquals("2")
-
-        onNodeWithTag("OtpCell_3", useUnmergedTree = true)
-            .assertTextEquals("3")
-
-        onNodeWithTag("OtpCell_4", useUnmergedTree = true)
-            .assertTextEquals("4")
-    }
 
     @Test
-    fun disabledWhenEnabledIsFalse(): Unit = with(rule) {
-        setContent {
-            OtpField(
-                otp = "",
-                length = OtpLength(4),
-                onOtpChange = {},
-                enabled = false,
-            ) {}
-        }
+    fun disabledWhenEnabledIsFalse(): Unit =
+        with(rule) {
+            setContent {
+                OtpField(
+                    otp = "",
+                    length = OtpLength(4),
+                    onOtpChange = {},
+                    enabled = false,
+                ) {}
+            }
 
-        onNodeWithTag("OtpField")
-            .assertIsNotEnabled()
-    }
+            onNodeWithTag("OtpField")
+                .assertIsNotEnabled()
+        }
 }
