@@ -75,187 +75,187 @@ class OtpFieldTest {
             onNodeWithTag("OtpCell_3", useUnmergedTree = true)
                 .assertTextEquals("3")
         }
-
-        @Test
-        fun displaysOnlyDigitsWhenInputTypeIsDIGITS() {
-            with(rule) {
-                val otpState = mutableStateOf("")
-
-                setContent {
-                    OtpField(
-                        otp = otpState.value,
-                        onOtpChange = { otpState.value = it },
-                        length = OtpLength(4),
-                        inputType = StandardOtpInputType.DIGITS,
-                    ) { otpCell ->
-                        Text(
-                            text = otpCell.value,
-                            modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
-                        )
-                    }
-                }
-
-                onNodeWithTag("OtpField")
-                    .performTextInput("123")
-
-                onNodeWithTag("OtpCell_1", useUnmergedTree = true)
-                    .assertTextEquals("1")
-
-                onNodeWithTag("OtpCell_2", useUnmergedTree = true)
-                    .assertTextEquals("2")
-
-                onNodeWithTag("OtpCell_3", useUnmergedTree = true)
-                    .assertTextEquals("3")
-            }
-        }
-
-        @Test
-        fun ignoresInvalidInputWhenInputTypeIsDIGITS() {
-            with(rule) {
-                val otpState = mutableStateOf("")
-
-                setContent {
-                    OtpField(
-                        otp = otpState.value,
-                        onOtpChange = { otpState.value = it },
-                        length = OtpLength(4),
-                        inputType = StandardOtpInputType.DIGITS,
-                    ) { otpCell ->
-                        Text(
-                            text = otpCell.value,
-                            modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
-                        )
-                    }
-                }
-
-                onNodeWithTag("OtpField")
-                    .performTextInput("12a")
-
-                onNodeWithTag("OtpCell_1", useUnmergedTree = true)
-                    .assertTextEquals("")
-
-                onNodeWithTag("OtpCell_2", useUnmergedTree = true)
-                    .assertTextEquals("")
-
-                onNodeWithTag("OtpCell_3", useUnmergedTree = true)
-                    .assertTextEquals("")
-            }
-        }
-
-        @Test
-        fun displaysOnlyLettersWhenInputTypeIsLETTERS() {
-            with(rule) {
-                val otpState = mutableStateOf("")
-
-                setContent {
-                    OtpField(
-                        otp = otpState.value,
-                        onOtpChange = { otpState.value = it },
-                        length = OtpLength(4),
-                        inputType = StandardOtpInputType.LETTERS,
-                    ) { otpCell ->
-                        Text(
-                            text = otpCell.value,
-                            modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
-                        )
-                    }
-                }
-
-                onNodeWithTag("OtpField")
-                    .performTextInput("abc")
-
-                onNodeWithTag("OtpCell_1", useUnmergedTree = true)
-                    .assertTextEquals("a")
-
-                onNodeWithTag("OtpCell_2", useUnmergedTree = true)
-                    .assertTextEquals("b")
-
-                onNodeWithTag("OtpCell_3", useUnmergedTree = true)
-                    .assertTextEquals("c")
-            }
-        }
-
-        @Test
-        fun ignoresInvalidInputWhenInputTypeIsLETTERS() {
-            with(rule) {
-                val otpState = mutableStateOf("")
-
-                setContent {
-                    OtpField(
-                        otp = otpState.value,
-                        onOtpChange = { otpState.value = it },
-                        length = OtpLength(4),
-                        inputType = StandardOtpInputType.LETTERS,
-                    ) { otpCell ->
-                        Text(
-                            text = otpCell.value,
-                            modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
-                        )
-                    }
-                }
-
-                onNodeWithTag("OtpField")
-                    .performTextInput("a;c")
-
-                onNodeWithTag("OtpCell_1", useUnmergedTree = true)
-                    .assertTextEquals("")
-
-                onNodeWithTag("OtpCell_2", useUnmergedTree = true)
-                    .assertTextEquals("")
-
-                onNodeWithTag("OtpCell_3", useUnmergedTree = true)
-                    .assertTextEquals("")
-            }
-        }
-
-        @Test
-        fun truncatesInputWhenLengthIsExceeded(): Unit =
-            with(rule) {
-                val otpState = mutableStateOf("")
-
-                setContent {
-                    OtpField(
-                        otp = otpState.value,
-                        onOtpChange = { otpState.value = it },
-                        length = OtpLength(4),
-                    ) { otpCell ->
-                        Text(
-                            text = otpCell.value,
-                            modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
-                        )
-                    }
-                }
-
-                onNodeWithTag("OtpField")
-                    .performTextInput("12345")
-
-                onNodeWithTag("OtpCell_1", useUnmergedTree = true)
-                    .assertTextEquals("1")
-
-                onNodeWithTag("OtpCell_2", useUnmergedTree = true)
-                    .assertTextEquals("2")
-
-                onNodeWithTag("OtpCell_3", useUnmergedTree = true)
-                    .assertTextEquals("3")
-
-                onNodeWithTag("OtpCell_4", useUnmergedTree = true)
-                    .assertTextEquals("4")
-            }
-
-        @Test
-        fun disabledWhenEnabledIsFalse(): Unit =
-            with(rule) {
-                setContent {
-                    OtpField(
-                        otp = "",
-                        length = OtpLength(4),
-                        onOtpChange = {},
-                        enabled = false,
-                    ) {}
-                }
-
-                onNodeWithTag("OtpField")
-                    .assertIsNotEnabled()
-            }
     }
+
+    @Test
+    fun displaysOnlyDigitsWhenInputTypeIsDIGITS() {
+        with(rule) {
+            val otpState = mutableStateOf("")
+
+            setContent {
+                OtpField(
+                    otp = otpState.value,
+                    onOtpChange = { otpState.value = it },
+                    length = OtpLength(4),
+                    inputType = StandardOtpInputType.DIGITS,
+                ) { otpCell ->
+                    Text(
+                        text = otpCell.value,
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
+                    )
+                }
+            }
+
+            onNodeWithTag("OtpField")
+                .performTextInput("123")
+
+            onNodeWithTag("OtpCell_1", useUnmergedTree = true)
+                .assertTextEquals("1")
+
+            onNodeWithTag("OtpCell_2", useUnmergedTree = true)
+                .assertTextEquals("2")
+
+            onNodeWithTag("OtpCell_3", useUnmergedTree = true)
+                .assertTextEquals("3")
+        }
+    }
+
+    @Test
+    fun ignoresInvalidInputWhenInputTypeIsDIGITS() {
+        with(rule) {
+            val otpState = mutableStateOf("")
+
+            setContent {
+                OtpField(
+                    otp = otpState.value,
+                    onOtpChange = { otpState.value = it },
+                    length = OtpLength(4),
+                    inputType = StandardOtpInputType.DIGITS,
+                ) { otpCell ->
+                    Text(
+                        text = otpCell.value,
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
+                    )
+                }
+            }
+
+            onNodeWithTag("OtpField")
+                .performTextInput("12a")
+
+            onNodeWithTag("OtpCell_1", useUnmergedTree = true)
+                .assertTextEquals("")
+
+            onNodeWithTag("OtpCell_2", useUnmergedTree = true)
+                .assertTextEquals("")
+
+            onNodeWithTag("OtpCell_3", useUnmergedTree = true)
+                .assertTextEquals("")
+        }
+    }
+
+    @Test
+    fun displaysOnlyLettersWhenInputTypeIsLETTERS() {
+        with(rule) {
+            val otpState = mutableStateOf("")
+
+            setContent {
+                OtpField(
+                    otp = otpState.value,
+                    onOtpChange = { otpState.value = it },
+                    length = OtpLength(4),
+                    inputType = StandardOtpInputType.LETTERS,
+                ) { otpCell ->
+                    Text(
+                        text = otpCell.value,
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
+                    )
+                }
+            }
+
+            onNodeWithTag("OtpField")
+                .performTextInput("abc")
+
+            onNodeWithTag("OtpCell_1", useUnmergedTree = true)
+                .assertTextEquals("a")
+
+            onNodeWithTag("OtpCell_2", useUnmergedTree = true)
+                .assertTextEquals("b")
+
+            onNodeWithTag("OtpCell_3", useUnmergedTree = true)
+                .assertTextEquals("c")
+        }
+    }
+
+    @Test
+    fun ignoresInvalidInputWhenInputTypeIsLETTERS() {
+        with(rule) {
+            val otpState = mutableStateOf("")
+
+            setContent {
+                OtpField(
+                    otp = otpState.value,
+                    onOtpChange = { otpState.value = it },
+                    length = OtpLength(4),
+                    inputType = StandardOtpInputType.LETTERS,
+                ) { otpCell ->
+                    Text(
+                        text = otpCell.value,
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
+                    )
+                }
+            }
+
+            onNodeWithTag("OtpField")
+                .performTextInput("a;c")
+
+            onNodeWithTag("OtpCell_1", useUnmergedTree = true)
+                .assertTextEquals("")
+
+            onNodeWithTag("OtpCell_2", useUnmergedTree = true)
+                .assertTextEquals("")
+
+            onNodeWithTag("OtpCell_3", useUnmergedTree = true)
+                .assertTextEquals("")
+        }
+    }
+
+    @Test
+    fun truncatesInputWhenLengthIsExceeded(): Unit =
+        with(rule) {
+            val otpState = mutableStateOf("")
+
+            setContent {
+                OtpField(
+                    otp = otpState.value,
+                    onOtpChange = { otpState.value = it },
+                    length = OtpLength(4),
+                ) { otpCell ->
+                    Text(
+                        text = otpCell.value,
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
+                    )
+                }
+            }
+
+            onNodeWithTag("OtpField")
+                .performTextInput("12345")
+
+            onNodeWithTag("OtpCell_1", useUnmergedTree = true)
+                .assertTextEquals("1")
+
+            onNodeWithTag("OtpCell_2", useUnmergedTree = true)
+                .assertTextEquals("2")
+
+            onNodeWithTag("OtpCell_3", useUnmergedTree = true)
+                .assertTextEquals("3")
+
+            onNodeWithTag("OtpCell_4", useUnmergedTree = true)
+                .assertTextEquals("4")
+        }
+
+    @Test
+    fun disabledWhenEnabledIsFalse(): Unit =
+        with(rule) {
+            setContent {
+                OtpField(
+                    otp = "",
+                    length = OtpLength(4),
+                    onOtpChange = {},
+                    enabled = false,
+                ) {}
+            }
+
+            onNodeWithTag("OtpField")
+                .assertIsNotEnabled()
+        }
 }
