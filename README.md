@@ -2,7 +2,7 @@
 
 A library of UI components for one-time password (OTP) input built with Jetpack Compose.
 
-[![Check](https://github.com/ivanioffe/one-time-password/actions/workflows/check.yaml/badge.svg?branch=main)](https://github.com/ivanioffe/one-time-password/actions/workflows/check.yaml)
+[![Check](https://github.com/ivanioffe/one-time-password/actions/workflows/check.yaml/badge.svg)](https://github.com/ivanioffe/one-time-password/actions/workflows/check.yaml)
 [![](https://jitpack.io/v/ivanioffe/one-time-password.svg)](https://jitpack.io/#ivanioffe/one-time-password)
 
 ## Features
@@ -30,7 +30,7 @@ dependencyResolutionManagement {
 
 ```kotlin
 dependencies {
-    implementation("com.github.ivanioffe:one-time-password:compose:latest-version")
+    implementation("com.github.ivanioffe.one-time-password:compose:latest-version")
 }
 ```
 

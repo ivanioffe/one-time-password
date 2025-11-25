@@ -1,8 +1,10 @@
 package com.ioffeivan.otp.compose.ui.basic
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -20,6 +22,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.dp
 import com.ioffeivan.otp.compose.utils.OtpInputType
 import com.ioffeivan.otp.compose.utils.OtpVisualTransformation
 import com.ioffeivan.otp.compose.utils.StandardOtpInputType
@@ -59,7 +62,7 @@ fun OtpField(
             onValueChange = {
                 val newOtp = it.text.take(length.value)
 
-                if (inputType.isValid(newOtp)) {
+                if (newOtp != otp && inputType.isValid(newOtp)) {
                     onOtpChange(newOtp)
                 }
             },
@@ -80,7 +83,13 @@ fun OtpField(
                 modifier
                     .testTag("OtpField"),
             decorationBox = { innerTextField ->
-                innerTextField()
+                Box(
+                    modifier =
+                        Modifier
+                            .size(0.dp),
+                ) {
+                    innerTextField()
+                }
 
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
