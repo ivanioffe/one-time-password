@@ -12,6 +12,7 @@ import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.google.common.truth.Truth.assertThat
 import com.ioffeivan.otp.compose.utils.StandardOtpInputType
 import com.ioffeivan.otp.core.model.OtpLength
 import org.junit.Rule
@@ -206,6 +207,33 @@ class OtpFieldTest {
 
             onNodeWithTag("OtpCell_3", useUnmergedTree = true)
                 .assertTextEquals("")
+        }
+    }
+
+    @Test
+    fun ignoreInputWhenOtpLengthIsMax() {
+        with(rule) {
+            val otp = "1234"
+            val otpState = mutableStateOf(otp)
+
+            setContent {
+                OtpField(
+                    otp = otpState.value,
+                    onOtpChange = { otpState.value = it },
+                    length = OtpLength(4),
+                    inputType = StandardOtpInputType.LETTERS,
+                ) { otpCell ->
+                    Text(
+                        text = otpCell.value,
+                        modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
+                    )
+                }
+            }
+
+            onNodeWithTag("OtpField")
+                .performTextInput("123")
+
+            assertThat(otpState.value).isEqualTo(otp)
         }
     }
 
