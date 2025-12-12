@@ -96,7 +96,7 @@ fun OtpField(
                     horizontalArrangement = Arrangement.Center,
                 ) {
                     repeat(length.value) { index ->
-                        val otpCellValue = transformedOtp.getOrNull(index)?.toString() ?: ""
+                        val otpCellValue = transformedOtp.getOrNull(index) ?: ' '
                         val isFocused = index == otp.length
                         val position = index + 1
 

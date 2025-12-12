@@ -36,7 +36,7 @@ class OtpFieldTest {
                     onOtpChange = {},
                 ) { otpCell ->
                     Text(
-                        text = otpCell.value,
+                        text = otpCell.value.toString(),
                         modifier =
                             Modifier.Companion
                                 .testTag("OtpCell"),
@@ -59,7 +59,7 @@ class OtpFieldTest {
                     length = OtpLength(3),
                 ) { otpCell ->
                     Text(
-                        text = otpCell.value,
+                        text = otpCell.value.toString(),
                         modifier =
                             Modifier.Companion
                                 .testTag("OtpCell_${otpCell.position}"),
@@ -91,7 +91,7 @@ class OtpFieldTest {
                     inputType = StandardOtpInputType.DIGITS,
                 ) { otpCell ->
                     Text(
-                        text = otpCell.value,
+                        text = otpCell.value.toString(),
                         modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
                     )
                 }
@@ -124,7 +124,7 @@ class OtpFieldTest {
                     inputType = StandardOtpInputType.DIGITS,
                 ) { otpCell ->
                     Text(
-                        text = otpCell.value,
+                        text = otpCell.value.toString(),
                         modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
                     )
                 }
@@ -134,13 +134,13 @@ class OtpFieldTest {
                 .performTextInput("12a")
 
             onNodeWithTag("OtpCell_1", useUnmergedTree = true)
-                .assertTextEquals("")
+                .assertTextEquals(" ")
 
             onNodeWithTag("OtpCell_2", useUnmergedTree = true)
-                .assertTextEquals("")
+                .assertTextEquals(" ")
 
             onNodeWithTag("OtpCell_3", useUnmergedTree = true)
-                .assertTextEquals("")
+                .assertTextEquals(" ")
         }
     }
 
@@ -157,7 +157,7 @@ class OtpFieldTest {
                     inputType = StandardOtpInputType.LETTERS,
                 ) { otpCell ->
                     Text(
-                        text = otpCell.value,
+                        text = otpCell.value.toString(),
                         modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
                     )
                 }
@@ -190,7 +190,7 @@ class OtpFieldTest {
                     inputType = StandardOtpInputType.LETTERS,
                 ) { otpCell ->
                     Text(
-                        text = otpCell.value,
+                        text = otpCell.value.toString(),
                         modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
                     )
                 }
@@ -200,13 +200,13 @@ class OtpFieldTest {
                 .performTextInput("a;c")
 
             onNodeWithTag("OtpCell_1", useUnmergedTree = true)
-                .assertTextEquals("")
+                .assertTextEquals(" ")
 
             onNodeWithTag("OtpCell_2", useUnmergedTree = true)
-                .assertTextEquals("")
+                .assertTextEquals(" ")
 
             onNodeWithTag("OtpCell_3", useUnmergedTree = true)
-                .assertTextEquals("")
+                .assertTextEquals(" ")
         }
     }
 
@@ -224,7 +224,7 @@ class OtpFieldTest {
                     inputType = StandardOtpInputType.LETTERS,
                 ) { otpCell ->
                     Text(
-                        text = otpCell.value,
+                        text = otpCell.value.toString(),
                         modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
                     )
                 }
@@ -249,7 +249,7 @@ class OtpFieldTest {
                     length = OtpLength(4),
                 ) { otpCell ->
                     Text(
-                        text = otpCell.value,
+                        text = otpCell.value.toString(),
                         modifier = Modifier.Companion.testTag("OtpCell_${otpCell.position}"),
                     )
                 }
