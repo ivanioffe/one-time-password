@@ -4,6 +4,7 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
+// This will be removed in future releases.
 class StandardOtpInputTypeTest {
     @Nested
     inner class DigitsOtpInputTypeTest {
