@@ -11,6 +11,17 @@ import androidx.compose.ui.text.input.KeyboardType
  *
  * This allows consumers to easily define custom input types beyond the standard set.
  */
+@Deprecated(
+    message = """
+        This contract is deprecated.
+        Input control is now split: use InputTransformation to define 'isValid' logic and standard KeyboardOptions for 'keyboardType' configuration in the OtpField parameters."
+    """,
+    replaceWith =
+        ReplaceWith(
+            expression = "InputTransformation and KeyboardOptions",
+        ),
+)
+@Suppress("DEPRECATION")
 interface OtpInputType {
     /**
      * The Compose [KeyboardType] that should be suggested to the user
@@ -31,7 +42,20 @@ interface OtpInputType {
  * Provides a set of standard, out-of-the-box implementations for [OtpInputType].
  *
  * Consumers should use these values for common use cases like requiring only digits or letters.
+ *
+ * @see androidx.compose.foundation.text.input.InputTransformation.filter
+ * @see androidx.compose.foundation.text.KeyboardOptions
  */
+@Deprecated(
+    message = """
+        Replaced by the combination of InputTransformation (for validation, but in the future it's filtering) and standard KeyboardOptions (for keyboard configuration). Migrate to these explicit parameters.
+    """,
+    replaceWith =
+        ReplaceWith(
+            expression = "InputTransformation and KeyboardOptions",
+        ),
+)
+@Suppress("DEPRECATION")
 enum class StandardOtpInputType : OtpInputType {
     /**
      * Accepts only numeric digits (0-9).

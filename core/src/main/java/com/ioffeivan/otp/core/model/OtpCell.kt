@@ -13,7 +13,7 @@ import androidx.compose.runtime.Immutable
  */
 @Immutable
 data class OtpCell(
-    val value: String,
+    val value: Char,
     val position: Int,
     val isFocused: Boolean,
 )
