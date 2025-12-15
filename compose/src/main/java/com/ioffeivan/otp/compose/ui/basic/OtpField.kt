@@ -76,6 +76,16 @@ fun OtpField(
             }
     }
 
+    LaunchedEffect(otp) {
+        val otpStateValue = state.text.toString()
+
+        if (otpStateValue != otp) {
+            state.edit {
+                replace(0, otpStateValue.length, otp)
+            }
+        }
+    }
+
     CompositionLocalProvider(LocalTextSelectionColors provides textSelectionColors) {
         BasicTextField(
             state = state,
@@ -89,9 +99,7 @@ fun OtpField(
             modifier =
                 modifier
                     .testTag("OtpField"),
-            decorator = { innerTextField ->
-                innerTextField()
-
+            decorator = {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center,
