@@ -1,4 +1,5 @@
 plugins {
+    id("org.jetbrains.dokka")
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
@@ -69,7 +70,7 @@ publishing {
         create<MavenPublication>("release") {
             groupId = "com.github.ivanioffe"
             artifactId = "compose"
-            version = "2.0.0-alpha02"
+            version = "2.0.0-beta01"
 
             afterEvaluate {
                 from(components["release"])
