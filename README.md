@@ -54,6 +54,11 @@ OtpField(
 - Kotlin >= 2.0.21
 - Jetpack Compose >= 1.9.3
 
+## Documentation
+
+Detailed API documentation is available here:
+**[View Full Documentation](https://ivanioffe.github.io/one-time-password/)**
+
 ## Contributing
 
 Questions, suggestions, and pull requests are welcome!
