@@ -1,5 +1,6 @@
 plugins {
     id("java-library")
+    id("org.jetbrains.dokka")
     alias(libs.plugins.jetbrains.kotlin.jvm)
     alias(libs.plugins.mavenPublish)
     alias(libs.plugins.ktlint)
