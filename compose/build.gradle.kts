@@ -70,7 +70,7 @@ publishing {
         create<MavenPublication>("release") {
             groupId = "com.github.ivanioffe"
             artifactId = "compose"
-            version = "2.0.0-beta01"
+            version = "2.0.0"
 
             afterEvaluate {
                 from(components["release"])
