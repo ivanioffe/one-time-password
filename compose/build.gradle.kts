@@ -63,7 +63,7 @@ publishing {
         create<MavenPublication>("release") {
             groupId = "com.github.ivanioffe"
             artifactId = "compose"
-            version = "2.0.0"
+            version = libs.versions.oneTimePassword.get()
 
             afterEvaluate {
                 from(components["release"])
