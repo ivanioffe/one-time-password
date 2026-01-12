@@ -1,4 +1,4 @@
-package com.ioffeivan.otp.compose.ui.basic
+package com.ioffeivan.otp.compose
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -23,7 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.testTag
-import com.ioffeivan.otp.compose.utils.OtpVisualTransformation
+import com.ioffeivan.otp.compose.internal.textSelectionColors
 import com.ioffeivan.otp.core.model.OtpCell
 import com.ioffeivan.otp.core.model.OtpLength
 

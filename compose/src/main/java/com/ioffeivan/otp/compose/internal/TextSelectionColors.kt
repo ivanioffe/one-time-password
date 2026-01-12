@@ -1,4 +1,4 @@
-package com.ioffeivan.otp.compose.ui.basic
+package com.ioffeivan.otp.compose.internal
 
 import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.ui.graphics.Color
