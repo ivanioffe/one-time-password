@@ -19,3 +19,7 @@ dependencies {
     dokka(project(":compose"))
     dokka(project(":core"))
 }
+
+dokka {
+    moduleVersion.set(libs.versions.oneTimePassword.get())
+}

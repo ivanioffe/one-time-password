@@ -71,3 +71,7 @@ publishing {
         }
     }
 }
+
+dokka {
+    moduleName.set("Compose UI Components")
+}
