@@ -40,7 +40,6 @@ android {
 }
 
 dependencies {
-
     api(project(":core"))
 
     implementation(libs.androidx.core.ktx)
@@ -50,14 +49,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    testImplementation(platform(libs.test.junit5.bom))
-    testImplementation(libs.test.junit5.api)
-    testRuntimeOnly(libs.test.junit5.engine)
-    testRuntimeOnly(libs.test.junit.platform.launcher)
-    testImplementation(libs.truth)
-
-    androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.ui.test.junit4)
     androidTestImplementation(libs.truth)
 
