@@ -1,4 +1,4 @@
-package com.ioffeivan.otp.compose.utils
+package com.ioffeivan.otp.compose
 
 import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.TextFieldBuffer

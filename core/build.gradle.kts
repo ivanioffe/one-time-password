@@ -18,3 +18,7 @@ kotlin {
 dependencies {
     compileOnly(libs.androidx.compose.runtime)
 }
+
+dokka {
+    moduleName.set("Core Models")
+}

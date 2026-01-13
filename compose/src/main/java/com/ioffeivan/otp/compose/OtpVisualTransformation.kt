@@ -1,4 +1,4 @@
-package com.ioffeivan.otp.compose.utils
+package com.ioffeivan.otp.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
