@@ -1,4 +1,4 @@
-package com.ioffeivan.otp.compose.ui.basic
+package com.ioffeivan.otp.compose
 
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.InputTransformation
@@ -16,7 +16,6 @@ import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
-import com.ioffeivan.otp.compose.utils.filter
 import com.ioffeivan.otp.core.model.OtpLength
 import org.junit.Rule
 import org.junit.Test

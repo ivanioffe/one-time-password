@@ -1,4 +1,4 @@
-package com.ioffeivan.otp.compose.utils
+package com.ioffeivan.otp.compose.cursor
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode

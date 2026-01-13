@@ -1,9 +1,8 @@
-package com.ioffeivan.otp.compose.ui.basic
+package com.ioffeivan.otp.compose
 
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
-import com.ioffeivan.otp.compose.utils.MaskingOtpVisualTransformation
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
