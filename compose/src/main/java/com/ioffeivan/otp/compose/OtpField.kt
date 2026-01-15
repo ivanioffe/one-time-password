@@ -23,6 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.ioffeivan.otp.compose.internal.textSelectionColors
 import com.ioffeivan.otp.core.model.OtpCell
 import com.ioffeivan.otp.core.model.OtpLength
@@ -35,6 +37,7 @@ import com.ioffeivan.otp.core.model.OtpLength
  * @param onOtpChange Callback invoked when the OTP value changes, providing the new OTP string.
  * @param modifier Optional [Modifier] to apply to the text field.
  * @param enabled Whether the OTP field is enabled for user input. Defaults to true.
+ * @param contentSpacing The horizontal space between each OTP cell. Defaults to 0.dp.
  * @param inputTransformation The input transformation to apply, such as filtering or limiting input. Defaults to [InputTransformation].
  * @param keyboardOptions The keyboard options for the input field. Defaults to [KeyboardOptions.Default].
  * @param keyboardActionHandler Optional handler for keyboard actions.
@@ -49,6 +52,7 @@ fun OtpField(
     onOtpChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    contentSpacing: Dp = 0.dp,
     inputTransformation: InputTransformation = InputTransformation,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActionHandler: KeyboardActionHandler? = null,
@@ -93,7 +97,11 @@ fun OtpField(
             decorator = {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center,
+                    horizontalArrangement =
+                        Arrangement.spacedBy(
+                            space = contentSpacing,
+                            alignment = Alignment.CenterHorizontally,
+                        ),
                 ) {
                     repeat(length.value) { index ->
                         val otpCellValue = transformedOtp.getOrElse(index) { ' ' }
