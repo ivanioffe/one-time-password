@@ -1,15 +1,15 @@
 [versions]
 oneTimePassword = "3.1.0"
 
-activityCompose = "1.11.0"
-agp = "8.11.2"
+activityCompose = "1.12.2"
+agp = "8.13.2"
 androidxJunitExt = "1.3.0"
 compose = "1.10.1"
 jetbrainsKotlinJvm = "2.2.21"
 kotlin = "2.2.21"
 ktlint = "13.1.0"
 material3 = "1.4.0"
-mavenPublish = "0.34.0"
+mavenPublish = "0.36.0"
 truth = "1.4.5"
 
 [libraries]
