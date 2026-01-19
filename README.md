@@ -51,8 +51,8 @@ OtpField(
 
 ## Requirements
 
-- Kotlin >= 2.0.21
-- Jetpack Compose >= 1.9.3
+- Kotlin >= 2.2.21
+- Jetpack Compose >= 1.10.1
 
 ## Documentation
 
