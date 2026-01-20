@@ -20,6 +20,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "OneTimePassword"
-include(":app")
+include(":sample")
+
 include(":compose")
 include(":core")
