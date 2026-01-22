@@ -1,3 +1,28 @@
 <resources>
-    <string name="app_name">OneTimePassword</string>
+    <string name="app_name">OTP Field Playground</string>
+
+    <string name="section_dimensions">OtpField Dimensions</string>
+    <string name="section_basic_params">Basic Parameters</string>
+    <string name="section_cell_params">Cell Parameters</string>
+    <string name="section_cursor_settings">Cursor Settings</string>
+    <string name="section_visual_transformation">Visual Transformation</string>
+
+    <string name="label_field_width">Container width</string>
+    <string name="label_field_height">Container height</string>
+    <string name="label_enabled">Enabled</string>
+    <string name="label_code_length">Code length</string>
+    <string name="label_content_spacing">Spacing between cells</string>
+    <string name="label_adaptive_width">Adaptive width (Weight)</string>
+    <string name="label_cell_width">Cell width</string>
+    <string name="label_cell_height">Cell height</string>
+    <string name="label_cursor_active">Cursor active</string>
+    <string name="label_cursor_thickness">Thickness</string>
+    <string name="label_cursor_height">Height</string>
+    <string name="label_blink_duration">Blink duration</string>
+    <string name="label_blink_style">Blink style</string>
+    <string name="label_mask_delay">Mask delay</string>
+
+    <string name="vt_type_none">None</string>
+    <string name="vt_type_mask">Mask</string>
+    <string name="vt_type_revealing">Revealing Mask</string>
 </resources>
