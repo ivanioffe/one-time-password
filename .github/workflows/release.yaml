@@ -1,0 +1,69 @@
+name: release
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Sample APK
+        run: ./gradlew :sample:assembleDebug
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-apk
+          path: sample/build/outputs/apk/debug/sample-debug.apk
+          retention-days: 1
+
+  deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Generate Docs
+        run: ./gradlew :dokkaGenerate --no-configuration-cache
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'build/dokka/html'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  create-release:
+    needs: [ build-apk, deploy-docs ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Download APK Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: sample-apk
+          path: release-artifacts
+
+      - name: Create Release and Upload APK
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-artifacts/sample-debug.apk
+          draft: true
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
