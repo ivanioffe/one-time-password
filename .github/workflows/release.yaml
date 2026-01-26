@@ -1,0 +1,82 @@
+name: release
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-release-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Sample APK
+        run: ./gradlew assembleRelease
+
+      - name: Set up Keystore
+        run: |
+          sudo apt update -y || true
+          sudo apt install -y --no-install-recommends coreutils
+          mkdir -p $RUNNER_TEMP/keystores
+          echo "${{ secrets.KEYSTORE_FILE }}" | base64 --decode > $RUNNER_TEMP/keystores/keystore.jks
+
+      - name: Sign APK
+        run: |
+          ANDROID_SDK_PATH=$ANDROID_HOME/build-tools/36.0.0/apksigner
+          $ANDROID_SDK_PATH sign \
+            --ks $RUNNER_TEMP/keystores/keystore.jks \
+            --ks-key-alias ${{ secrets.KEY_ALIAS }} \
+            --ks-pass pass:${{ secrets.KEYSTORE_PASSWORD }} \
+            --key-pass pass:${{ secrets.KEY_PASSWORD }} \
+            --out sample.apk \
+            sample/build/outputs/apk/release/sample-release-unsigned.apk
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apk-artifact
+          path: sample.apk
+
+  deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Generate Docs
+        run: ./gradlew :dokkaGenerate --no-configuration-cache
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'build/dokka/html'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  create-release:
+    needs: [ build-release-apk, deploy-docs ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download APK Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: release-apk-artifact
+
+      - name: Create Release and Upload APK
+        uses: softprops/action-gh-release@v2
+        with:
+          files: sample.apk
+          draft: true
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
