@@ -7,9 +7,20 @@ A library of UI components for one-time password (OTP) input built with Jetpack 
 
 ## Features
 
-- Flexible input components for OTP codes
-- Customizable styles and behavior
-- Easy integration with Jetpack Compose projects
+- Highly customizable OTP input component for Jetpack Compose.
+- Stateless design for straightforward integration and efficient state management.
+- Slot-based API for defining unique UI elements for each OTP cell based on value, position, or focus.
+- Support for various OTP code lengths with flexible cell spacing and arrangement.
+- Custom input filtering and validation to ensure secure and valid entries.
+- Easy control over keyboard options and action handling for improved user experience.
+- Flexible visual transformations, including masking, temporary revealing, or fully custom display logic.
+- Advanced focus management with customizable cursor effects like blinking or fading animations.
+
+## Sample project
+
+It's worth exploring the sample app, which includes an interactive playground screen for the OtpField component. You can tweak settings like OTP length, visual transformations, cursor effects, and layout options in real-time to see how they affect the UI and behavior.
+
+Download the Android sample app [here](https://github.com/ivanioffe/one-time-password/releases/latest/download/sample.apk)
 
 ## Installation
 
@@ -45,7 +56,7 @@ OtpField(
     otp = otp,
     length = OtpLength(5),
     onOtpChange = { otp = it },
-    content = { /* your implementation */ },
+    content = { /* your cell UI implementation */ },
 )
 ```
 
@@ -65,7 +76,7 @@ Questions, suggestions, and pull requests are welcome!
 
 ## License
 
-MIT License. See LICENSE for details.
+MIT License. See [LICENSE](https://github.com/ivanioffe/one-time-password/blob/main/LICENCE) for details.
 
 ## Contact
 
